@@ -191,9 +191,9 @@ public class CoronaKiosk extends Application {
         root.setStyle("-fx-padding: 10;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;"
                 + "-fx-border-insets: 5;" + "-fx-border-radius: 5;" + "-fx-border-color: blue;");
 
-        Scene scene = new Scene(root, 700, 410);
+        Scene scene = new Scene(root, 600, 410);
         stage.setScene(scene);
-        stage.setTitle("Coronavirus K500iosk");
+        stage.setTitle("Coronavirus Kiosk");
         stage.show();
     }
 

@@ -8,10 +8,16 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
 import java.io.FileInputStream;
+import javafx.scene.paint.Color;
 import java.io.FileNotFoundException;
+import javafx.scene.text.Font;
 
 public class CoronaKiosk extends Application {
-    Label messageLbl = new Label("Select state for more information");
+    Label State = new Label("State Punjab");
+    Label Confirmed = new Label("Confirmed  313");
+    Label Recovered = new Label("Recovered  71");
+    Label Dead = new Label("Dead    18");
+    Label Active = new Label("Active    242");
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -21,6 +27,18 @@ public class CoronaKiosk extends Application {
     public void start(Stage stage) throws FileNotFoundException {
 
         Button states[] = new Button[5];
+        State.setTextFill(Color.web("#F0F1EB"));
+
+        Confirmed.setTextFill(Color.web("#ffa500"));
+        Dead.setTextFill(Color.web("#F7F2F0"));
+        Active.setTextFill(Color.web("#ff0000"));
+        Recovered.setTextFill(Color.web("#00ff40"));
+
+        State.setFont(new Font(20));
+        Confirmed.setFont(new Font(20));
+        Dead.setFont(new Font(20));
+        Active.setFont(new Font(20));
+        Recovered.setFont(new Font(20));
 
         String stateNames[] = { "Maharashtra", "Gujarat", "Tamil Nadu", "Telangana", "Kerela" };
 
@@ -169,9 +187,17 @@ public class CoronaKiosk extends Application {
         buttonBox4.getChildren().addAll(graphButton);
 
         buttonBox4.setSpacing(15);
-
         VBox root = new VBox();
-        root.getChildren().addAll(buttonBox, buttonBox2, buttonBox3, buttonBox4, messageLbl);
+        BackgroundImage headBackgroundimage = new BackgroundImage(new Image(new FileInputStream("head.jpg")),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+        // create Background
+        Background headbackground = new Background(headBackgroundimage);
+        State.setBackground(headbackground);
+
+        root.getChildren().addAll(buttonBox, buttonBox2, buttonBox3, buttonBox4, State, Confirmed, Recovered, Dead,
+                Active);
 
         graphButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -191,14 +217,14 @@ public class CoronaKiosk extends Application {
         root.setStyle("-fx-padding: 10;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;"
                 + "-fx-border-insets: 5;" + "-fx-border-radius: 5;" + "-fx-border-color: blue;");
 
-        Scene scene = new Scene(root, 600, 410);
+        Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
         stage.setTitle("Coronavirus Kiosk");
         stage.show();
     }
 
     public void printMessage(String message) {
-        messageLbl.setText(message);
+        Confirmed.setText(message);
     }
 
 }
